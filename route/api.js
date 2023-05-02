@@ -13,11 +13,12 @@ const VerifyToken = (req, res, next) =>{
     if(BearerToken == undefined || BearerToken == "") res.send({ "status" : false, "message":"Token not present." });
     
     var token = BearerToken.split(" ")[1];
-    console.log("token", token);
+   
     //  verify token
-    jwt.verify(token,secretkey,(err, auth)=>{
-        console.log("Auth data : ", auth);
-        if(err) res.send({ "status" : false, "message":"Token not valid." });
+    jwt.verify(token,secretkey,{ maxAge : "2h"},(err, auth)=>{
+        if(err) res.send({ "status" : false, "message":err });
+        console.log("auth data:", auth);
+        auth.resData.token = token;
         req.auth = auth;
         next();     // if token present move to next.
     });

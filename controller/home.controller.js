@@ -10,10 +10,9 @@ exports.index = async (req, res) => {
 
 exports.login = async (req, res) => {
     let resData = await UserModal.login(req.body);
-    
-    jwt.sign({resData}, secretkey, { expiresIn : "300000s"}, (err, token)=>{
-        res.json(token);
-    });
+    const token = jwt.sign({resData}, secretkey, { expiresIn : "20s"});
+    resData.token = token;
+    res.json(resData);
 }
 
 exports.profile = async (req, res) => {
