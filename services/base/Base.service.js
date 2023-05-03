@@ -12,7 +12,6 @@ BaseService.fetch = (sqlQuery) => {
     });
 }
 
-
 BaseService.singleFetch = (sqlQuery) => {
   return new Promise((resolve, reject)=>{
       sql.query(sqlQuery, (err, res) => {
@@ -20,6 +19,17 @@ BaseService.singleFetch = (sqlQuery) => {
             reject(err);
           }
           resolve(res[0]);
+        });
+  });
+}
+
+BaseService.executeQuery = (sqlQuery) => {
+  return new Promise((resolve, reject)=>{
+      sql.query(sqlQuery, (err, res) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(res);
         });
   });
 }
