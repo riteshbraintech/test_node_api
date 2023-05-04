@@ -7,7 +7,7 @@ Helper.generateTime = (type,time) => {
     if(type=="m")   d2.setMinutes ( d1.getMinutes() + time );
     else    d2.setSeconds( d1.getSeconds() + time );
 
-    return Date.now(d2);
+    return Date.parse(d2);
 
 };
 
