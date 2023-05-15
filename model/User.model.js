@@ -17,6 +17,13 @@ UserModal.login = async (req) => {
 };
 
 
+UserModal.register = async (req) => {
+    var insertQuery = `INSERT INTO users (name, email, password) VALUES ('${req.name}', '${req.email}', '${req.password}')`;
+    var res = await BaseService.executeQuery(insertQuery);
+    return res;
+};
+
+
 UserModal.fetchSingleUser = async (userId) => {
     var sqlQuery = "select * from users where id="+userId;
     let response = await BaseService.singleFetch(sqlQuery);

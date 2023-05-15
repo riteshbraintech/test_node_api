@@ -58,6 +58,7 @@ const VerifyToken = async (req, res, next) =>{
 router.get('/', HomeController.index);
 router.post('/login', HomeController.login);
 router.post('/profile', VerifyToken, HomeController.profile);
+router.post('/register', HomeController.register);
 
 
 
